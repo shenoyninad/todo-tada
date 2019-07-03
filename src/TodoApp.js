@@ -14,11 +14,12 @@ class TodoApp extends React.Component {
     return (
       <div className="header">
         <h3>TODO LIST</h3>
+        <label
+          htmlFor="new-todo">What will you do today?
+            <span className="total-points"> Points up for grabs: {this.state.items.length * 10}</span>
+        </label>
         <TodoList items={this.state.items} handleDone={this.handleDone} handleClose={this.handleClose}/>
         <form>
-        <label 
-          htmlFor="new-todo">What will you do today? :
-        </label> <br />
         <input 
           id="new-todo"
           className = "new-todo"
@@ -27,9 +28,9 @@ class TodoApp extends React.Component {
         />
         <button className="button-add" onClick = {this.handleSubmit}>Add #{this.state.items.length + 1}</button>
         </form>
-        <h3>Things Completed <i className="fas fa-check-circle"></i></h3>
+        <h3>Things Completed <i className="fas fa-check-circle"></i>  <span className="done-points"> +{this.state.itemsDone.length * 10}</span></h3>
         <TodoDone itemsDone={this.state.itemsDone} />
-        <h3>Things Closed <i className="fas fa-times-circle"></i></h3>
+        <h3>Things Closed <i className="fas fa-times-circle"></i>  <span className="close-points"> -{this.state.itemsClose.length * 10}</span></h3>
         <TodoClose itemsClose={this.state.itemsClose} />
       </div>
     );

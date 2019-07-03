@@ -50,3 +50,15 @@
   position: relative;
   z-index: -1;
 }
+
+.total-points{
+  color: blue;
+}
+
+.done-points{
+  color: green;
+}
+
+.close-points{
+  color: red;
+}
