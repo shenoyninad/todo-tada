@@ -1,0 +1,52 @@
+.header{
+  margin-left: 20px;
+}
+
+.button-add{
+  margin-top: 20px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 10px;
+  background: red;
+  color: white;
+  cursor: pointer;
+  padding: 7px;
+}
+
+.new-todo{
+  width: 300px;
+  border: 2px solid black;
+  padding-left: 3px;
+  border-radius: 5px;
+  }
+
+.list-type{
+  list-style-type: disc;
+}
+
+.fa-check-circle{
+  margin-left: 10px;
+  color: green;
+}
+
+.fa-times-circle{
+  margin-left: 10px;
+  color: red;
+}
+
+.btn-done{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-close{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.done-icon, .close-icon{
+  position: relative;
+  z-index: -1;
+}
