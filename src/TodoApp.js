@@ -16,7 +16,8 @@ class TodoApp extends React.Component {
         <h3>TODO LIST</h3>
         <label
           htmlFor="new-todo">What will you do today?
-            <span className="total-points"> Points up for grabs: {this.state.items.length * 10}</span>
+          <span className="total-points"> Points up for grabs: {this.state.items.length * 10}</span>
+          <i className="fas fa-arrow-circle-up"></i>
         </label>
         <TodoList items={this.state.items} handleDone={this.handleDone} handleClose={this.handleClose}/>
         <form>
@@ -66,7 +67,7 @@ class TodoApp extends React.Component {
     var itemsTemp = this.state.items;
     var itemsOriginal = this.state.items;
     for(var count = 0; count < itemsTemp.length; count++) {
-      if(itemId == itemsTemp[count].id) {
+      if(itemId === itemsTemp[count].id) {
         const itemClose = {
           id: itemId,
           text: itemsTemp[count].text
@@ -88,7 +89,7 @@ class TodoApp extends React.Component {
     var itemsTemp = this.state.items;
     var itemsOriginal = this.state.items;
     for (var count = 0; count < itemsTemp.length; count++) {
-      if (itemId == itemsTemp[count].id) {
+      if (itemId === itemsTemp[count].id) {
         const itemDone = {
           id: itemId,
           text: itemsTemp[count].text
