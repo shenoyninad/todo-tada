@@ -34,7 +34,7 @@
   color: red;
 }
 
-.btn-done{
+.btn-done, .btn-move{
   border: none;
   background: none;
   cursor: pointer;
@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.done-icon, .close-icon{
+.done-icon, .close-icon, .move-icon{
   position: relative;
   z-index: -1;
 }
@@ -63,3 +63,7 @@
   color: red;
 }
 
+.fa-arrow-circle-up{
+  color: blue;
+  margin-left: 10px;
+}

@@ -9,6 +9,7 @@ class TodoApp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleMove = this.handleMove.bind(this);
   }
   render(){
     return (
@@ -32,7 +33,7 @@ class TodoApp extends React.Component {
         <h3>Things Completed <i className="fas fa-check-circle"></i>  <span className="done-points"> +{this.state.itemsDone.length * 10}</span></h3>
         <TodoDone itemsDone={this.state.itemsDone} />
         <h3>Things Closed <i className="fas fa-times-circle"></i>  <span className="close-points"> -{this.state.itemsClose.length * 10}</span></h3>
-        <TodoClose itemsClose={this.state.itemsClose} />
+        <TodoClose itemsClose={this.state.itemsClose} handleMove={this.handleMove}/>
       </div>
     );
   }
@@ -63,11 +64,11 @@ class TodoApp extends React.Component {
 
   handleClose = (e) =>
   {
-    var itemId = e.target.value;
-    var itemsTemp = this.state.items;
-    var itemsOriginal = this.state.items;
-    for(var count = 0; count < itemsTemp.length; count++) {
-      if(itemId === itemsTemp[count].id) {
+    let itemId = e.target.value;
+    let itemsTemp = this.state.items;
+    let itemsOriginal = this.state.items;
+    for(let count = 0; count < itemsTemp.length; count++) {
+      if(itemId == itemsTemp[count].id) {
         const itemClose = {
           id: itemId,
           text: itemsTemp[count].text
@@ -85,11 +86,11 @@ class TodoApp extends React.Component {
 
   handleDone = (e) =>
   {
-    var itemId = e.target.value;
-    var itemsTemp = this.state.items;
-    var itemsOriginal = this.state.items;
-    for (var count = 0; count < itemsTemp.length; count++) {
-      if (itemId === itemsTemp[count].id) {
+    let itemId = e.target.value;
+    let itemsTemp = this.state.items;
+    let itemsOriginal = this.state.items;
+    for (let count = 0; count < itemsTemp.length; count++) {
+      if (itemId == itemsTemp[count].id) {
         const itemDone = {
           id: itemId,
           text: itemsTemp[count].text
@@ -100,6 +101,27 @@ class TodoApp extends React.Component {
         this.setState(state =>({
           itemsDone: state.itemsDone.concat(itemDone),
           items: itemsOriginal
+        }));
+      }
+    }
+  }
+
+  handleMove = (e) => {
+    let itemId = e.target.value;
+    let itemsTemp = this.state.itemsClose;
+    let itemsOriginal = this.state.itemsClose;
+    for(let count = 0; count< itemsTemp.length; count++) {
+      if(itemId == itemsTemp[count].id) {
+        const itemMove = {
+          id: itemId,
+          text: itemsTemp[count].text
+        }
+
+        itemsOriginal.splice(count, 1);
+
+        this.setState(state => ({
+          items: state.items.concat(itemMove),
+          itemsClose: itemsOriginal
         }));
       }
     }
@@ -136,7 +158,8 @@ class TodoClose extends React.Component {
     return (
       <div>
         <ul>
-          {this.props.itemsClose.map(item => (<li>{item.text}</li>))}
+          {this.props.itemsClose.map(item => (<li>{item.text}
+            <button className="btn-move" value={item.id} onClick={this.props.handleMove}><i className="fas fa-arrow-circle-up move-icon"></i></button></li>))}
         </ul>
       </div>
     );
